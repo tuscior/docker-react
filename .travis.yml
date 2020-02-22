@@ -8,3 +8,10 @@ before_install:
 script:
   - docker run -e CI=true kt/docker-react npm run test
 
+deploy:
+  provider: heroku
+  strategy: git
+  app:
+    master: kt-test-deploy
+  on:
+    branch: master
