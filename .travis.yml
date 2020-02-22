@@ -1,16 +1,15 @@
 sudo: required
 services:
-  - docker
-
+- docker
 before_install:
-  - docker build -t kt/docker-react -f Dockerfile.dev . 
-
+- docker build -t kt/docker-react -f Dockerfile.dev .
 script:
-  - docker run -e CI=true kt/docker-react npm run test
-
+- docker run -e CI=true kt/docker-react npm run test
 deploy:
   provider: heroku
   strategy: git
+  api_key:
+    secure: rLgPg0mbBQJIkp6q1zIYl4sdhAr4hfo/k6C5NHJwDCd/RpQB6M6IKmlfbUdrcsI0BJcPazLfQAtq0XcBm6lbfWkoiyAZnv0Dw+4AiGfzdoYLBbdm4BMEcxJEPVcQRxN+F3NB83GMfciAykRr9VN2LDbgPEuBDxAV8UjJyUlqY0pUOQL1AekWYsPWhIw7R5jTTpxfFUVlcrs3qNOZ6tzHEHYyq6iG3XmjsAeF9mdxx8eOgYPahUaPL1wA85/cr5EjOXnIjce6Jt8VQ5dpJhsV3/JZCAAbkO8H6fHPyK1wU7ERpi15mDYmOuqiUwPl1sOdlAk6v1vI3VlzL8AP3I8BZLO2aEcJw1N6RV2kxAgmBR4Yctu5G/0Xll1H/7K+otjbPYv3z+Jn8ZW7QuFVps/19i4vHo7YFsUjotkWinIACKFmu+RP1SE8DNapU3jZvFSvUPu4qW86amVhekUJ07suWoMR45RrCAN7A8rCTXh8e+C6FHRUeDjvSffwMcTBaVcaNZdUuyWcT0vPY7GumKs3ZFmnebTgUCyqonM5zKyGzKNSLy4eXfzCRXClLLZAaiXm0MjCGC8QD1OOzNudRG88wTcq7clNoXjLRacONPaDQSM15QVSRfCGwKZzP+Snzy8XrAiaXPBtIbXA7lf4PhkGLsKzbMjttsRxGFLldqFpTBA=
   app:
     master: kt-test-deploy
   on:
